@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>first</title>
-</head>
-<body>
-	<p>first</p>
-	<span>add span</span>
-	<div>add a div mark</div>
-	<p>first github company </p>
-	<p>create a new branch and simple</p>
-	<input type="text" name="" value="a" />
 
+<head>
+    <title>copy demo</title>
+</head>
+
+<body>
+    <p id="selector">copy the text</p>
+    <button id="copy">复制</button>
+    <script type="text/javascript">
+    var aEle = document.querySelector('#copy');
+    aEle.addEventListener('click', function() {
+        var copyDOM = document.querySelector('#selector');
+        var range = document.createRange();
+        range.selectNode(copyDOM);
+        window.getSelection().addRange(range);
+        var successful = document.execCommand('copy');
+        try {
+            // Now that we've selected the anchor text, execute the copy command  
+
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copy email command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+        // Remove the selections - NOTE: Should use
+        // removeRange(range) when it is supported  
+        window.getSelection().removeAllRanges();
+    }, false);
+    </script>
 </body>
+
 </html>
